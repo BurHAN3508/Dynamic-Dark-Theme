@@ -1,0 +1,57 @@
+/* Universal Dark Theme Style */
+:root {
+  --background-color: #121212;
+  --text-color: #e0e0e0;
+  --link-color: #bb86fc;
+  --link-hover-color: #3700B3;
+  --border-color: #292929;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+a {
+  color: var(--link-color);
+}
+
+a:hover {
+  color: var(--link-hover-color);
+}
+
+input, textarea, select, button {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+table {
+  border-color: var(--border-color);
+}
+
+td, th {
+  background-color: var(--background-color);
+}
+
+a {
+  color: var(--link-color);
+}
+
+a:hover {
+  color: var(--link-hover-color);
+}
+
+input, textarea, select, button {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+table {
+  border-color: var(--border-color);
+}
+
+td, th {
+  background-color: var(--background-color);
+}
