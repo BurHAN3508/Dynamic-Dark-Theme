@@ -1,0 +1,50 @@
+name: Release Dark Theme CSS
+
+on:
+  push:
+    branches:
+      - main  # veya CSS dosyalarının oluşturulduğu ve push edildiği branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        pip install --upgrade pip
+        # Eğer bağımlılıklarınız varsa burada yükleyin.
+
+    - name: Generate CSS files
+      run: python generate_css.py
+      # 'generate_css.py' dosyanızın adını kendi script dosyanızın adıyla değiştirin.
+      
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
+
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./example_com_dark_theme.css
+        asset_name: example_com_dark_theme.css
+        asset_content_type: text/css
+
+    # Eğer birden fazla CSS dosyası varsa, her biri için ayrı ayrı 'Upload Release Asset' adımı ekleyin.
